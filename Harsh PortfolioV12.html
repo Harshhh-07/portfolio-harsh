@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh Gaikwad - Portfolio</title>
+    <style>
+        /* CSS Variables for easy customization */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --text-color: #333;
+            --light-bg: #f9fafb;
+            --dark-bg: #1f2937;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background-color: var(--primary-color);
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), url('/api/placeholder/1200/800') center/cover;
+            background-attachment: fixed;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* About Section */
+        #about {
+            background-color: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .about-img img {
+            width: 80%;
+            height: auto;
+            display: block;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            margin-bottom: 15px;
+        }
+
+        /* Skills Section */
+        /* .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        } */
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    gap: 20px;
+}
+
+.skill-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* ensures spacing is balanced */
+    height: 250px; /* ✅ forces same height */
+}
+
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .skill-card p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+        .skill-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        /* Projects Section */
+        /* .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .project-content p {
+            margin-bottom: 15px;
+        } */
+
+
+        .projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px;
+}
+
+.project-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    height: 100%; /* Full height inside grid cell */
+    min-height: 420px; /* ✅ Ensures equal card height */
+}
+
+.project-img img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.project-content {
+    flex-grow: 1;
+}
+
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--dark-bg);
+            color: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            list-style: none;
+        }
+
+        .social-links li {
+            margin: 0 10px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        
+
+      @media screen and (max-width: 768px) {
+    .skills-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skill-card {
+        height: 250px; /* optional, or slightly reduce */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-card {
+        height: auto;
+        min-height: 250px;
+    }
+}
+
+/*projects-container*/
+@media (max-width: 600px) {
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background-color: white;
+                box-shadow: var(--box-shadow);
+                padding: 20px 0;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 10px 20px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+         /* Education section card fix */
+    #education .project-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        min-height: 420px;
+        padding: 20px;
+    }
+    #education .project-img {
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+        overflow: hidden;
+    }
+    #education .project-img img {
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+        object-fit: contain;
+        border-radius: 8px;
+        background: #f3f4f6;
+        padding: 8px;
+        display: block;
+        margin: 0 auto;
+    }
+
+#hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: 
+        linear-gradient(to right, rgba(255,255,255,0.7), rgba(255,255,255,0.3)), /* Optional overlay for readability */
+        url(photo-1486406146926-c627a92ad1ab.jpeg) center center/cover no-repeat;
+    background-attachment: fixed; /* Optional: for parallax effect */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    background: rgba(255,255,255,0.5); /* Optional: semi-transparent background for text readability */
+    padding: 40px;
+    border-radius: 16px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+  </style>
+</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Harsh Gaikwad</div>
+                <ul class="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hi, I'm <span class="highlight">Harsh Gaikwad</span></h1>
+                <p>A results-driven Finance Executive at Deloitte specializing in risk analysis, Fraud and forensic investigations</p>
+                <div class="hero-buttons">
+                    <a href="#experience" class="btn">View My Experience</a>
+                    <a href="#contact" class="btn" style="margin-left: 10px; background-color: transparent; color: var(--primary-color); border: 1px solid var(--primary-color);">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <!-- Using your uploaded image here -->
+                    <img src="my-picture.jpg" alt="Harsh Gaikwad">
+                </div>
+                <div class="about-text">
+                    <h3>Who I Am</h3>
+                    <p>I'm Harsh Gaikwad, a 23-year-old finance executive from Mumbai, passionate about business, macroeconomics, strategic thinking, and industrial trends. Currently working at Deloitte Touche Tohmatsu, I specialize in risk analysis and forensic investigations with demonstrated leadership and communication skills.</p>
+                    <h3>My Vision</h3>
+                    <p>My vision is to develop the analytical and interpersonal skills necessary to execute and align corporate objectives and work as an M&A advisor. I'm constantly monitoring global markets, world affairs, analyzing government policies & Central banks data to understand the macroeconomic view and economic trends for the future.</p>
+                    <h3>Research & Analysis</h3>
+                    <p>I've conducted market research and published reports using financial databases like Capital IQ, Eviews, and Refinitiv for the auto sector and manufacturing sector. I'm well-versed in multi-level background searches and due diligence investigations.</p>
+                    <a href="#" class="btn" style="margin-top: 20px;">Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-container">
+                <!-- Skill 1 -->
+                <div class="skill-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Financial Markets</h3>
+                    <p>Analysis & Research</p>
+                </div>
+                
+                <!-- Skill 2 -->
+                <div class="skill-card">
+                    <i class="fas fa-search-dollar"></i>
+                    <h3>Forensic Investigations</h3>
+                    <p>Fraud & Corporate Misconduct</p>
+                </div>
+                
+                <!-- Skill 3 -->
+                <div class="skill-card">
+                    <i class="fas fa-balance-scale"></i>
+                    <h3>Risk Analysis</h3>
+                    <p>Due Diligence & Compliance</p>
+                </div>
+                
+                <!-- Skill 4 -->
+                <div class="skill-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Leadership</h3>
+                    <p>Team Management</p>
+                </div>
+                
+                <!-- Skill 5 -->
+                <div class="skill-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Tech Savvy</h3>
+                    <p>Financial Databases & Tools</p>
+                </div>
+                
+                <!-- Skill 6 -->
+                <div class="skill-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Adaptability</h3>
+                    <p>Cross-functional Teamwork</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+   <!-- Updated Experience and Contact Sections -->
+
+<!-- Replace the experience container starting around line 561 -->
+<section id="experience">
+    <div class="container">
+        <h2 class="section-title">My Experience</h2>
+        <div class="experience-container">
+            <!-- Experience 1 -->
+            <div class="experience-card">
+                <div class="project-img">
+                    <img src="deloitte - picture.png" alt="Deloitte">
+                </div>
+                <div class="project-content">
+                    <h3>Executive - Deloitte Touche Tohmatsu India LLP</h3>
+                    <p><em>June 2024 - Present</em></p>
+                    <ul style="list-style-type: disc; margin-left: 20px; margin-bottom: 15px;">
+                        <li>Led employee verification and due dilligence process for a major Australian cliennt under (know your employee) framework</li>
+                        <li>Conducted CIS (Corporate Intelegence Service) framework for various clients</li>
+                        <li>Performed multi-level background searches and due diligence investigations</li>
+                        <li>Analyzed findings to identify potential risks and discrepancies</li>
+                        <li>Collabrated with cross-functional teams to uphold standards and compliance policies</li>
+                       </li>Conducted forensic investigations into fraud, integrity issues, bribery, corruption, and corporate misconduct</li>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Experience 2 -->
+            <div class="experience-card">
+                <div class="project-img">
+                    <img src="aranca-logo-0203.png" alt="Aranca">
+                </div>
+                <div class="project-content">
+                    <h3>Associate - Aranca</h3>
+                    <p><em>March - June 2024</em></p>
+                    <ul style="list-style-type: disc; margin-left: 20px; margin-bottom: 15px;">
+                        <li>Conducted Market research and published reports using financial databases like Capital IQ, Eviews, Refinitiv for auto sector and manufacturing sector</li>
+                        <li>Global Research and Analytics Firm focusing on market research and financial analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Remove the JS form listener in the script tag -->
+<!-- 
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message! This form is not connected to a backend yet.');
+        this.reset();
+    });
+</script>
+-->
+
+<!-- CSS to insert inside the <style> tag -->
+<style>
+/* Add or update inside your <style> tag */
+
+.experience-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.experience-card {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-height: 380px; /* Ensures all cards are at least this tall */
+    height: 100%;
+    transition: box-shadow 0.3s;
+}
+
+.experience-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.project-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    height: 110px; /* Set a fixed height for all image containers */
+}
+
+.experience-card img {
+    max-width: 200px;
+    max-height: 100px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #f3f4f6;
+    padding: 8px;
+}
+
+.project-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.project-content h3 {
+    margin-bottom: 8px;
+}
+
+.project-content ul {
+    margin-top: 8px;
+    margin-bottom: 0;
+    padding-left: 20px;
+}
+
+@media (max-width: 600px) {
+    .experience-container {
+        grid-template-columns: 1fr;
+    }
+}
+</style>  
+
+    <!-- Projects -->
+    <section id="projects">
+    <div class="container">
+        <h2 class="section-title">My Projects</h2>
+        <div class="projects-container">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <h3>Project Title 1</h3>
+                <p>Brief description of the project.</p>
+                <a href="link-to-your-ppt-1.pptx" class="btn" target="_blank">View PPT</a>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <h3>Project Title 2</h3>
+                <p>Brief description of the project.</p>
+                <a href="link-to-your-ppt-2.pptx" class="btn" target="_blank">View PPT</a>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <h3>Project Title 3</h3>
+                <p>Brief description of the project.</p>
+                <a href="link-to-your-ppt-3.pptx" class="btn" target="_blank">View PPT</a>
+            </div>
+        </div>
+    </div>
+</section> 
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="projects-container">
+                <!-- Education 1 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="Bhavans- pic.jpeg" alt="Bhavans College">
+                    </div>
+                    <div class="project-content">
+                        <h3>Bhavans College (Mumbai University)</h3>
+                        <p><em>2020 - 2023</em></p>
+                        <p>Bachelor of Management Studies (B.M.S)</p>
+                        <p>9.08 CGPA</p>
+                        <p>Volunteer at College tests, lead multiple departments in this period. University level certificates and medals in multiple sports.</p>
+                    </div>
+                </div>
+                
+                <!-- Education 2 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="elphinstone - pic.jpeg" alt="Elphinstone College">
+                    </div>
+                    <div class="project-content">
+                        <h3>Elphinstone College (Mumbai University)</h3>
+                        <p><em>March 2018</em></p>
+                        <p>HSC - COMMERCE (MATHS)</p>
+                        <p>74%</p>
+                    </div>
+                </div>
+                
+                <!-- Education 3 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="Fatima - pic.jpeg" alt="Fatima High School">
+                    </div>
+                    <div class="project-content">
+                        <h3>Fatima High School</h3>
+                        <p><em>2018</em></p>
+                        <p>SSC - Mumbai</p>
+                        <p>80%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p><i class="fas fa-envelope"></i> gaikwadharsh2002@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 8591691565, +91 9869164048</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Mumbai, India</p>
+                    <div class="social-links" style="justify-content: flex-start; margin-top: 20px;">
+                        <li><a href="https://www.linkedin.com/in/harsh-gaikwad-049b82232?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BgHixUAewQfq9JTV5sb7Tjg%3D%3D"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactform" action="https://formspree.io/f/manogkjn" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                    <div id="form-success" style="display:none; color:green; margin-top:20px;"> Thank you for your message! I will get back to you soon.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <ul class="social-links">
+                <li><a href="https://www.linkedin.com/in/harsh-gaikwad-049b82232?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BgHixUAewQfq9JTV5sb7Tjg%3D%3D"><i class="fab fa-linkedin"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+            <p>&copy; 2025 Harsh Gaikwad. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+            // console.log("test");
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu if it's open
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
+       /* // Form submission (you'll need to add backend logic for this to work)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! This form is not connected to a backend yet.');
+            this.reset();
+        }); */
+
+        // Scroll to top button functionality
+        window.addEventListener('scroll', function() {
+            if (document.querySelector('.scroll-top')) {
+                if (window.scrollY > 500) {
+                    document.querySelector('.scroll-top').style.display = 'flex';
+                } else {
+                    document.querySelector('.scroll-top').style.display = 'none';
+                }
+            }
+        });
+
+        // Active navigation highlight
+        window.addEventListener('scroll', function() {
+            let sections = document.querySelectorAll('section');
+            let navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+<script>
+document.getElementById('contactform').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+  const response = await fetch(form.action, {
+    method: form.method,
+    body: data,
+    headers: {
+      'Accept': 'application/json'
+    }
+  });
+  if (response.ok) {
+    form.reset();
+    document.getElementById('form-success').style.display = 'block';
+  } else {
+    alert('There was a problem submitting your form. Please try again.');
+  }
+});
+</script>
+</body>
+</html>
